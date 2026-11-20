@@ -1,0 +1,20 @@
+{
+  "name": "idea-forge",
+  "private": true,
+  "type": "module",
+  "description": "Idea Forge — agentic product coach that scores ideas and drafts MVP plans",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "dev": "npx --yes @grok/agent-sdk@0.7.0 dev --dir . --port 3847 --mode single",
+    "validate": "npx --yes @grok/agent-sdk@0.7.0 validate --dir .",
+    "eval": "npx --yes @grok/agent-sdk@0.7.0 eval --dir ."
+  },
+  "dependencies": {
+    "@grok/agent-sdk": "^0.7.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "6.0.3"
+  }
+}
