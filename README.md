@@ -44,4 +44,4 @@ npx vercel
 ## Notes
 
 - Ideas never leave the browser; clearing site data removes them.
-- Model: `llama-3.3-70b-versatile` via Groq (tool-calling capable).
+- Model: `openai/gpt-oss-120b` via Groq (tool-calling capable).
