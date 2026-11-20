@@ -1,20 +1,32 @@
 {
   "name": "idea-forge",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "description": "Idea Forge — agentic product coach that scores ideas and drafts MVP plans",
   "scripts": {
-    "check": "tsc --noEmit",
-    "dev": "npx --yes @grok/agent-sdk@0.7.0 dev --dir . --port 3847 --mode single",
-    "validate": "npx --yes @grok/agent-sdk@0.7.0 validate --dir .",
-    "eval": "npx --yes @grok/agent-sdk@0.7.0 eval --dir ."
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@grok/agent-sdk": "^0.7.0",
-    "zod": "^4.6.5"
+    "@ai-sdk/groq": "^4.0.85",
+    "@ai-sdk/react": "^4.0.181",
+    "ai": "^7.0.177",
+    "next": "^15.5.7",
+    "react": "^19.1.2",
+    "react-dom": "^19.1.2",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "typescript": "6.0.3"
-  }
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.7",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "description": "Idea Forge — product coach that scores ideas and drafts MVP plans (Vercel + Groq)"
 }

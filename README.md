@@ -1,70 +1,47 @@
 # Idea Forge
 
-An agentic product coach built with the [Cursor Agent SDK](https://cursor.com/docs/bdk). Describe a product idea; Idea Forge scores it, saves it for the session, and can draft a tight MVP plan.
-
-This project is a small end-to-end demo of Cursor building and running an agent: tools, skills, durable session memory, evals, and a local playground.
+Product coach that scores ideas and drafts tight MVP plans. Built with **Next.js**, **Groq**, and browser **localStorage** — deployable on **Vercel**.
 
 ## What it does
 
 - Scores ideas on clarity, feasibility, novelty, and demand (1–5)
-- Saves and lists ideas for the current chat session
+- Saves and lists ideas in your browser only
 - Drafts MVP plans with scope cuts, risks, and next moves
 
 ## Prerequisites
 
-- Node.js 22.13+
-- A Cursor account / API key for model turns (`npx @grok/agent-sdk login`)
+- Node.js 22+
+- A Groq API key from [console.groq.com/keys](https://console.groq.com/keys)
 
 ## Run locally
 
 ```bash
+cd idea-forge
 npm install
-npx @grok/agent-sdk login   # once, if you are not signed in
-npm run dev                 # playground + API (default port 3000)
+cp .env.example .env.local
+# paste GROQ_API_KEY into .env.local
+npm run dev
 ```
 
-Open the playground URL printed in the terminal (usually `http://127.0.0.1:<port>/playground`).
+Open [http://localhost:3000](http://localhost:3000).
 
 Try prompts like:
 
-- "Score and save this idea: a shared inbox for landlord maintenance requests."
+- "Score and save: a Slack bot that turns messy standups into a daily digest."
 - "List my saved ideas."
 - "Draft an MVP plan for the strongest one."
 
-One-shot turn without the playground:
+## Deploy on Vercel
+
+1. Import this folder as a Vercel project (root directory: `idea-forge` if the repo parent is `IDEA-FORGE`).
+2. Set environment variable `GROQ_API_KEY`.
+3. Deploy.
 
 ```bash
-npx @grok/agent-sdk run --dir . --message "Score and save: a chrome extension that turns meeting notes into Linear tickets."
+npx vercel
 ```
 
-## Checks
+## Notes
 
-```bash
-npx @grok/agent-sdk validate --dir .
-npm run check
-npx @grok/agent-sdk tool call save_idea --dir . --input '{"title":"Desk Queue","pitch":"A waitlist for shared desks in coworking spaces.","audience":"coworking operators","clarity":4,"feasibility":4,"novelty":3,"demand":3}'
-npx @grok/agent-sdk eval --dir . --list
-npx @grok/agent-sdk eval --dir .   # needs a Cursor credential
-```
-
-## Deploy
-
-Do not deploy from a cloud agent transcript if you need the one-time alias token. On your machine:
-
-```bash
-npx @grok/agent-sdk validate --dir .
-npx @grok/agent-sdk deploy --dir . --dry-run
-npx @grok/agent-sdk deploy --dir .
-```
-
-Manage hosted agents at https://cursor.com/dashboard/deployed-agents.
-
-## Layout
-
-| Path | Role |
-| --- | --- |
-| `bot/agent.ts` | Model config |
-| `bot/instructions.md` | Always-on system prompt |
-| `bot/tools/` | `save_idea`, `list_ideas`, `get_idea` |
-| `bot/skills/mvp-plan.md` | Scoring + MVP reply shape |
-| `evals/smoke.eval.ts` | Smoke eval |
+- Ideas never leave the browser; clearing site data removes them.
+- Model: `llama-3.3-70b-versatile` via Groq (tool-calling capable).

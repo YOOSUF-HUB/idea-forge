@@ -1,4 +1,4 @@
-/** Shared idea-store helpers. Not discovered as tools. */
+/** Shared idea-store helpers. */
 
 export type IdeaScores = {
   clarity: number;
@@ -20,10 +20,6 @@ export type SavedIdea = {
 export type IdeaList = {
   ideas: SavedIdea[];
 };
-
-export function ideasKey(sessionId: string): string {
-  return `${sessionId}:ideas`;
-}
 
 export function slugifyTitle(title: string): string {
   const base = title

@@ -1,0 +1,35 @@
+import type { Metadata } from "next";
+import { DM_Sans, Syne } from "next/font/google";
+import "./globals.css";
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "Idea Forge",
+  description:
+    "Product coach that scores ideas and drafts tight MVP plans. Powered by Groq.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${syne.variable} ${dmSans.variable} antialiased`}>
+        {children}
+      </body>
+    </html>
+  );
+}
